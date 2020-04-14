@@ -1,0 +1,15 @@
+
+        table{
+            background-color: lightblue;
+            border : 1px solid black;
+            text-align : center;
+            font-size : 20px;
+            align : center;
+        }
+        td{
+            padding : 10px;
+        }
+
+        h1{
+            text-align : center;
+        }
