@@ -1,0 +1,42 @@
+<?php
+
+    function koneksi() 
+    {
+        $conn = mysqli_connect("localhost", "root", "") or die("koneksi ke DB gagal");
+        mysqli_select_db($conn, "tubes_193040099") or die("Database Salah!");
+
+        return $conn;
+    }
+
+    function query($sql)
+    {
+        $conn = koneksi();
+        $result = mysqli_query($conn, "$sql");
+
+        $rows = [];
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            $rows[] = $row;
+        }
+        return $rows;   
+    }
+
+    //fungsi untuk menambahkan data didalam database
+    function tambah($data)
+    {
+        $conn = koneksi();
+
+        $Gambar = htmlspecialchars($data['Gambar']);
+        $AlatMusik = htmlspecialchars($data['AlatMusik']);
+        $Merk = htmlspecialchars($data['Merk']);
+        $AlamatToko = htmlspecialchars($data['AlamatToko']);
+        $Harga = htmlspecialchars($data['Harga']);
+
+        $query = "INSERT INTO alatmusik
+                  VALUES
+                  ('', '$Gambar', '$AlatMusik', '$Merk', '$AlamatToko', '$Harga')";
+
+                  mysqli_query($conn, $query);
+                  return mysqli_affected_rows($conn);
+    }
+?>
